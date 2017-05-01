@@ -51,15 +51,15 @@ namespace BaseJumpContracts.DAL
 
             var subscriptions = new List<Subscription>
             {
-                new Subscription { CustomerID=1, ServiceID=2000, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=1, ServiceID=3000, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=1, ServiceID=4000, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=1, ServiceID=4000, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=0, ServiceID=3001, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=2, ServiceID=3003, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=2, ServiceID=4000, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=2, ServiceID=4040, Price=50.00m, Term=36 },
-                new Subscription { CustomerID=3, ServiceID=3000, Price=50.00m, Term=36 }
+                new Subscription { CustomerID=1, ServiceID=2000, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=1, ServiceID=3000, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=1, ServiceID=4000, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=1, ServiceID=4000, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=0, ServiceID=3001, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=2, ServiceID=3003, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=2, ServiceID=4000, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=2, ServiceID=4040, Price=50.00M, Term=36 },
+                new Subscription { CustomerID=3, ServiceID=3000, Price=50.00M, Term=36 }
             };
 
             subscriptions.ForEach(s => context.Subscriptions.Add(s));
