@@ -42,12 +42,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Service.Description)
                 </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "Subscription", new { id = item.SubscriptionID }, null)
+                </td>
             </tr>
         }
 
     </table>
+   <p>
+    @Html.ActionLink("Add Subscription", "Create", "Subscription", new { customerID = Model.ID }, null)
+    
+   </p>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit Customer", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
