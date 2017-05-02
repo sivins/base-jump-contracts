@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using BaseJumpContracts.DAL;
 using BaseJumpContracts.Models;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
 
 namespace BaseJumpContracts.Controllers
 {
@@ -35,6 +38,59 @@ namespace BaseJumpContracts.Controllers
             }
                 
             return View(customer);
+        }
+
+        // GET: Customer/Contract/5
+        public FileResult Contract(int? id)
+        {
+            //Find customer
+            Customer customer = db.Customers.Find(id);
+            //Extract subscriptions
+            var subscriptions = customer.Subscriptions;
+
+            //Initialize
+            var document = new Document(PageSize.A4, 50, 50, 25, 25);
+            var output = new MemoryStream();
+            var writer = PdfWriter.GetInstance(document, output);
+            document.Open();
+
+            //Define fonts
+            var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
+            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+            var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+            var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
+            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
+
+            //Build document
+            document.Add(new Paragraph(customer.Name, titleFont));
+
+            var subscriptionsTable = new PdfPTable(5);
+
+            subscriptionsTable.AddCell("Service ID");
+            subscriptionsTable.AddCell("Name");
+            subscriptionsTable.AddCell("Description");
+            subscriptionsTable.AddCell("Price");
+            subscriptionsTable.AddCell("Term");
+
+            foreach(var subscription in subscriptions)
+            {
+                var service = subscription.Service;
+                subscriptionsTable.AddCell(new Phrase(service.ID.ToString()));
+                subscriptionsTable.AddCell(new Phrase(service.Name));
+                subscriptionsTable.AddCell(new Phrase(service.Description));
+                subscriptionsTable.AddCell(new Phrase(subscription.Price.ToString()));
+                subscriptionsTable.AddCell(new Phrase(subscription.Term.ToString()));
+            }
+
+            document.Add(subscriptionsTable);
+            document.Close();
+
+            byte[] content = output.ToArray();
+
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}.pdf", customer.Name));
+
+            return File(content, "application/pdf", string.Format("{0}.pdf", customer.Name));
         }
 
         // GET: Customer/Create
