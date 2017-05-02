@@ -19,6 +19,33 @@
         </dd>
 
     </dl>
+    <hr />
+    <h3>
+    @Html.DisplayNameFor(model => model.Subscriptions)
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Service ID</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        
+        @foreach (var item in Model.Subscriptions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Description)
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
