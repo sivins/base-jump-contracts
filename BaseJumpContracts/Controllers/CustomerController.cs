@@ -47,6 +47,12 @@ namespace BaseJumpContracts.Controllers
             Customer customer = db.Customers.Find(id);
             //Extract subscriptions
             var subscriptions = customer.Subscriptions;
+            //Caculate total price
+            List<decimal> prices = new List<decimal>();
+            foreach (var subscription in subscriptions) {
+                prices.Add(subscription.Price);
+            }
+            var totalPrice = prices.Sum();
 
             //Initialize
             var document = new Document(PageSize.A4, 50, 50, 25, 25);
@@ -64,31 +70,42 @@ namespace BaseJumpContracts.Controllers
             //Build document
             document.Add(new Paragraph(customer.Name, titleFont));
 
-            var subscriptionsTable = new PdfPTable(5);
+            var subscriptionsTable = new PdfPTable(4);
 
+            //Format table
+            subscriptionsTable.HorizontalAlignment = 0;
+            subscriptionsTable.SpacingBefore = 10;
+            subscriptionsTable.SpacingAfter = 10;
+            subscriptionsTable.DefaultCell.Border = 1;
+            subscriptionsTable.DefaultCell.Padding = 10;
+
+            //Table Header
             subscriptionsTable.AddCell("Service ID");
             subscriptionsTable.AddCell("Name");
-            subscriptionsTable.AddCell("Description");
             subscriptionsTable.AddCell("Price");
             subscriptionsTable.AddCell("Term");
 
+            //Build table values
             foreach(var subscription in subscriptions)
             {
                 var service = subscription.Service;
                 subscriptionsTable.AddCell(new Phrase(service.ID.ToString()));
                 subscriptionsTable.AddCell(new Phrase(service.Name));
-                subscriptionsTable.AddCell(new Phrase(service.Description));
                 subscriptionsTable.AddCell(new Phrase(subscription.Price.ToString()));
                 subscriptionsTable.AddCell(new Phrase(subscription.Term.ToString()));
             }
 
             document.Add(subscriptionsTable);
+
+            document.Add(new Paragraph(string.Format("Total Monthly Recurring Charges: ${0}", totalPrice), bodyFont));
+            document.Add(new Paragraph(" "));
+            document.Add(new Paragraph("Sign:__________________________________________"));
+            document.Add(new Paragraph("Print Name:____________________________________"));
+            document.Add(new Paragraph("Date:__________________________________________"));
+
+            //Close stream and cast to byte array
             document.Close();
-
             byte[] content = output.ToArray();
-
-            //Response.ContentType = "application/pdf";
-            //Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}.pdf", customer.Name));
 
             return File(content, "application/pdf", string.Format("{0}.pdf", customer.Name));
         }
