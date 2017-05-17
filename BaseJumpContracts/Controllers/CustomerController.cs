@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BaseJumpContracts.DAL;
 using BaseJumpContracts.Models;
 using iTextSharp.text;
 using System.IO;
 using iTextSharp.text.pdf;
+using System;
 
 namespace BaseJumpContracts.Controllers
 {
@@ -21,6 +19,30 @@ namespace BaseJumpContracts.Controllers
         // GET: Customer
         public ActionResult Index()
         {
+            //TODO: Factor all this out into a public function that all controllers can use
+            int counter = 0;
+            string checker =  "BJC" + counter.ToString() + "timeStamp";
+            while (Request.Cookies[checker] != null)
+            {
+                var ID = counter;
+
+                var timeStampKey = "BJC" + counter.ToString() + "timeStamp";
+                var timeStamp = Request.Cookies[timeStampKey].Value;
+
+                System.Diagnostics.Debug.WriteLine(timeStamp);
+
+                //Event type
+
+                //Class
+
+                //Write all this shit to the database
+
+                counter++;
+                checker =  "BJC" + counter.ToString() + "timeStamp";
+            }
+
+            Request.Cookies.Clear();
+
             return View(db.Customers.ToList());
         }
 
