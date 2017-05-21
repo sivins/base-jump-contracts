@@ -1,18 +1,30 @@
-﻿$(document).ready(function () {
-    // document.cookie = "CookieName=CookieValue;";
-    var events = [];
-    var counter = 0;
+﻿var events = [];
+
+$(document).ready(function () {
 
     $('body').on('click', function (e) {
-        // Time event happened in milliseconds since 1/1/70
         var d = new Date();
         var time = d.getTime();
-        var timeStamp = "BJC" + counter + "timeStamp=" + time  + ";";
-        document.cookie = timeStamp;
-
-        //Event type (what event occurred)
-        //Class
-
-        counter++
+        var eventType = "click";
+        var htmlClass = this.className;
+        var event = { "TimeStamp": time, "EventType": eventType, "HtmlClass": htmlClass };
+        events.push(event);
+        console.log(events);
     });
-})
+
+});
+
+$(window).on('unload', function () {
+    for (var i=0, len = events.length; i < len; i++) {
+        //.map() to make faster
+        //var event = JSON.stringify(events[i]);
+        //events[i] = event;
+    }
+    console.log(events);
+    $.ajax({
+        url: "../api/EventLog",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(events)
+    });
+});

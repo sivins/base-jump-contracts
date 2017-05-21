@@ -17,6 +17,8 @@ namespace BaseJumpContracts.DAL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<EventLog> EventLogs { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

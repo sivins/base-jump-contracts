@@ -19,6 +19,7 @@ namespace BaseJumpContracts.Controllers
         // GET: Customer
         public ActionResult Index()
         {
+            /*
             //TODO: Factor all this out into a public function that all controllers can use
             int counter = 0;
             string checker =  "BJC" + counter.ToString() + "timeStamp";
@@ -42,6 +43,7 @@ namespace BaseJumpContracts.Controllers
             }
 
             Request.Cookies.Clear();
+            */
 
             return View(db.Customers.ToList());
         }
