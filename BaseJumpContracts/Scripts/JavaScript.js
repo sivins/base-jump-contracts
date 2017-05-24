@@ -22,7 +22,7 @@ $(window).on('unload', function () {
     }
     console.log(events);
     $.ajax({
-        url: "../api/EventLog",
+        url: "/api/EventLog",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(events)
