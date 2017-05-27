@@ -8,8 +8,9 @@ namespace BaseJumpContracts.Models
     public class EventLog
     {
         public int ID { get; set; }
-        public long TimeStamp { get; set; }
+        public long Time { get; set; }
+        public string TagName { get; set; }
         public string HtmlClass { get; set; }
-        public string EventType { get; set; }
+        public string Text { get; set; }
     }
 }

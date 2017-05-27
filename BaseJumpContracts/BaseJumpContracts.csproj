@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201705212301154_TimeStampDataType.Designer.cs">
       <DependentUpon>201705212301154_TimeStampDataType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705271750380_EventLogger.cs" />
+    <Compile Include="Migrations\201705271750380_EventLogger.Designer.cs">
+      <DependentUpon>201705271750380_EventLogger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705212301154_TimeStampDataType.resx">
       <DependentUpon>201705212301154_TimeStampDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705271750380_EventLogger.resx">
+      <DependentUpon>201705271750380_EventLogger.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

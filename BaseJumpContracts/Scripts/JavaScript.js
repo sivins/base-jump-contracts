@@ -5,11 +5,13 @@ $(document).ready(function () {
     $('body').on('click', function (e) {
         var d = new Date();
         var time = d.getTime();
-        var eventType = "click";
-        var htmlClass = this.className;
-        var event = { "TimeStamp": time, "EventType": eventType, "HtmlClass": htmlClass };
+        var htmlClass = e.target.className;
+        var tagName = e.target.tagName;
+        var text = e.target.textContent;
+        //console.log(e);
+        var event = { "Time": time, "TagName" : tagName, "HtmlClass": htmlClass, "Text" : text };
         events.push(event);
-        console.log(events);
+        //console.log(events);
     });
 
 });
@@ -36,5 +38,5 @@ $(window).on('unload', function () {
         }
     }
 
-    wait(100);
+    wait(200);
 });
