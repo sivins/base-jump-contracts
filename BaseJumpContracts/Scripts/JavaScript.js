@@ -17,12 +17,6 @@ $(document).ready(function () {
 });
 
 $(window).on('unload', function () {
-    for (var i=0, len = events.length; i < len; i++) {
-        //.map() to make faster
-        //var event = JSON.stringify(events[i]);
-        //events[i] = event;
-    }
-    console.log(events);
     $.ajax({
         url: "/api/EventLog",
         type: "POST",
@@ -30,6 +24,7 @@ $(window).on('unload', function () {
         data: JSON.stringify(events)
     });
 
+    // Need to give the server a quick moment to process the Ajax POST.
     function wait(ms) {
         var start = new Date().getTime();
         var end = start;
