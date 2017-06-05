@@ -1,0 +1,27 @@
+﻿body {
+    /*Reset boxes*/
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    display: inline-block;
+    padding: 30px;
+    background-color: black;
+    color: purple;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+nav {
+    display: inline-block;
+    width: 300px;
+    clear: left;
+}
+
+content {
+    display: inline-block;
+    clear: right;
+}

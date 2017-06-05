@@ -8,28 +8,20 @@ $(document).ready(function () {
         var htmlClass = e.target.className;
         var tagName = e.target.tagName;
         var text = e.target.textContent;
-        //console.log(e);
         var event = { "Time": time, "TagName" : tagName, "HtmlClass": htmlClass, "Text" : text };
         events.push(event);
-        //console.log(events);
     });
 
 });
 
 $(window).on('unload', function () {
-    for (var i=0, len = events.length; i < len; i++) {
-        //.map() to make faster
-        //var event = JSON.stringify(events[i]);
-        //events[i] = event;
-    }
-    console.log(events);
     $.ajax({
         url: "/api/EventLog",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(events)
     });
-
+/*
     function wait(ms) {
         var start = new Date().getTime();
         var end = start;
@@ -38,5 +30,6 @@ $(window).on('unload', function () {
         }
     }
 
-    wait(200);
+    //wait(700);
+    */
 });
