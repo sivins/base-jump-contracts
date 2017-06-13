@@ -77,6 +77,12 @@ table th {
 table tr td {
     padding: 10px;
     border: 2px solid #040404;
+    border-top-color: #040404;
+}
+
+.table tfoot>tr>td {
+    border-bottom-color: #040404;
+    border-top-color: #040404;
 }
 
 h3 {
@@ -94,7 +100,7 @@ h2.search-header {
 
 table.index-table {
     border: none;
-    width: 800px;
+    width: 600px;
 }
 
 table.index-table tr td {
