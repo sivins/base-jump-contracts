@@ -4,28 +4,20 @@
     ViewBag.Title = "Search";
 }
 
-<h2>Search</h2>
+<h2 class="search-header">Search</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Search form will go here
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+<table class="index-table">
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.ID).ToHtmlString(), "Details", "Customer", new { ID = item.ID }, null)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink(item.Name, "Details", "Customer", new { ID = item.ID }, null)
         </td>
     </tr>
 }

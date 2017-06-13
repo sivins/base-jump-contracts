@@ -83,3 +83,25 @@ h3 {
     clear: left;
     margin-top: 50px;
 }
+
+/*Index page*/
+
+h2.search-header {
+    clear: none;
+    float: none;
+    margin-bottom: 20px;
+}
+
+table.index-table {
+    border: none;
+    width: 800px;
+}
+
+table.index-table tr td {
+    border: none;
+    border-bottom: 5px solid #e46a6b;
+}
+
+table.index-table tr:hover {
+    background-color: #040404;
+}

@@ -13,12 +13,12 @@
 
 </head>
 <body>
-    <div class="header">BaseJump Contracts</div>
+    <div class="header">@Html.ActionLink("BaseJump Contracts", "Index", "Customer")</div>
     <div class="menu">
         <ul>
             <li>My Customers (Coming Soon)</li>
-            <li>Search Customers</li>
-            <li>New Customer</li>
+            <li>@Html.ActionLink("Search Customers", "Index", "Customer")</li>
+            <li>@Html.ActionLink("New Customer", "Create", "Customer")</li>
         </ul>
     </div>
     <div class="main">
